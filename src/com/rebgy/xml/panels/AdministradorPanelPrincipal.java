@@ -1,274 +1,175 @@
 package com.rebgy.xml.panels;
 
+import com.rebgy.xml.clases.ManagerBD;
+import com.rebgy.xml.clases.RowValues;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class AdministradorPanelPrincipal extends javax.swing.JPanel {
+
+    public int numRow = 0;
+
+    private RowValues row;
 
     public AdministradorPanelPrincipal() {
         initComponents();
+        status();
+        addTableManager();
     }
-    public void Clientes(){
-        
+
+    public void addTableManager() {
+        for (int i = 0; i < ManagerBD.getTableName().size(); i++) {
+            TabedPanel.addTab(ManagerBD.getTableName().get(i), new ManagerTables(ManagerBD.getTableName().get(i)));
+            TabedPanel.repaint();
+            TabedPanel.updateUI();
+        }
+    }
+
+    public void addTableManager(String name) {
+        TabedPanel.addTab(name, new ManagerTables(name));
+        TabedPanel.repaint();
+        TabedPanel.updateUI();
+    }
+
+    public void status() {
+        databaseLBL.setText("Database: " + ManagerBD.database);
+        hostLBL.setText("Host: " + ManagerBD.host);
+        portLBL.setText("Port: " + ManagerBD.port);
+        userLBL.setText("User: " + ManagerBD.user);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableClientes = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        buscarClienteTXT = new javax.swing.JTextField();
-        eliminarClienteBTN = new javax.swing.JButton();
-        editarClienteBTN = new javax.swing.JButton();
-        nuevoClienteBTN = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        userClienteTXT = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        passClienteTXT = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableEmpl = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        buscarEmplTXT = new javax.swing.JTextField();
-        eliminarEmplBTN = new javax.swing.JButton();
-        editarEmplBTN = new javax.swing.JButton();
-        nuevoEmplBTN = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        usuarioEmplTXT = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        passEmplTXT = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        TabedPanel = new javax.swing.JTabbedPane();
+        ajustesPNL = new javax.swing.JPanel();
+        createDB = new javax.swing.JButton();
+        deleteDataBase = new javax.swing.JButton();
+        deleteTable = new javax.swing.JButton();
+        connectDataBase = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        addTable = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        tableName = new javax.swing.JTextField();
+        newRowBTN = new javax.swing.JButton();
+        applyBTN = new javax.swing.JButton();
+        databaseLBL = new javax.swing.JLabel();
+        hostLBL = new javax.swing.JLabel();
+        portLBL = new javax.swing.JLabel();
+        userLBL = new javax.swing.JLabel();
 
-        tableClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Usuario", "Tipo"
-            }
-        ));
-        jScrollPane1.setViewportView(tableClientes);
-
-        jLabel1.setText("Buscar: ");
-
-        eliminarClienteBTN.setText("Eliminar");
-
-        editarClienteBTN.setText("Editar");
-
-        nuevoClienteBTN.setText("Nuevo");
-
-        jLabel2.setText("Usuarios:");
-
-        userClienteTXT.addActionListener(new java.awt.event.ActionListener() {
+        createDB.setText("Create Data Base");
+        createDB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userClienteTXTActionPerformed(evt);
+                createDBActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Coontraseña: ");
-
-        passClienteTXT.addActionListener(new java.awt.event.ActionListener() {
+        deleteDataBase.setText("Delete Data Base");
+        deleteDataBase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passClienteTXTActionPerformed(evt);
+                deleteDataBaseActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(userClienteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(eliminarClienteBTN)
-                        .addGap(15, 15, 15)
-                        .addComponent(editarClienteBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nuevoClienteBTN)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscarClienteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passClienteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(buscarClienteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(userClienteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passClienteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminarClienteBTN)
-                    .addComponent(editarClienteBTN)
-                    .addComponent(nuevoClienteBTN))
-                .addContainerGap())
-        );
+        deleteTable.setText("Delete Table");
+        deleteTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteTableActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+        connectDataBase.setText("Connect Data Base");
+        connectDataBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                connectDataBaseActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.swingx.VerticalLayout verticalLayout1 = new org.jdesktop.swingx.VerticalLayout();
+        verticalLayout1.setGap(10);
+        addTable.setLayout(verticalLayout1);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Table Name: ");
+        addTable.add(jLabel3);
+        addTable.add(tableName);
+
+        newRowBTN.setText("New Row");
+        newRowBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newRowBTNActionPerformed(evt);
+            }
+        });
+        addTable.add(newRowBTN);
+
+        applyBTN.setText("Apply");
+        applyBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyBTNActionPerformed(evt);
+            }
+        });
+        addTable.add(applyBTN);
+
+        jScrollPane3.setViewportView(addTable);
+
+        databaseLBL.setText("Database Connected");
+
+        hostLBL.setText("Host");
+
+        portLBL.setText("Port");
+
+        userLBL.setText("user");
+
+        javax.swing.GroupLayout ajustesPNLLayout = new javax.swing.GroupLayout(ajustesPNL);
+        ajustesPNL.setLayout(ajustesPNLLayout);
+        ajustesPNLLayout.setHorizontalGroup(
+            ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajustesPNLLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(deleteTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteDataBase, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(connectDataBase, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createDB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ajustesPNLLayout.createSequentialGroup()
+                        .addComponent(databaseLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hostLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(portLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(528, Short.MAX_VALUE))
+            .addGroup(ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajustesPNLLayout.createSequentialGroup()
+                    .addGap(0, 843, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        ajustesPNLLayout.setVerticalGroup(
+            ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajustesPNLLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(createDB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Clientes", jPanel1);
-
-        tableEmpl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Usuario", "Tipo"
-            }
-        ));
-        jScrollPane2.setViewportView(tableEmpl);
-
-        jLabel5.setText("Buscar: ");
-
-        eliminarEmplBTN.setText("Eliminar");
-
-        editarEmplBTN.setText("Editar");
-
-        nuevoEmplBTN.setText("Nuevo");
-
-        jLabel6.setText("Usuarios:");
-
-        usuarioEmplTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioEmplTXTActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Contraseña: ");
-
-        passEmplTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passEmplTXTActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(usuarioEmplTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(eliminarEmplBTN)
-                                .addGap(15, 15, 15)
-                                .addComponent(editarEmplBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nuevoEmplBTN)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addGap(0, 6, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buscarEmplTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passEmplTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(buscarEmplTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(usuarioEmplTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(passEmplTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminarEmplBTN)
-                    .addComponent(editarEmplBTN)
-                    .addComponent(nuevoEmplBTN))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deleteDataBase)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Empleados", jPanel2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1288, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 387, Short.MAX_VALUE)
+                .addComponent(connectDataBase)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteTable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
+                .addGroup(ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(databaseLBL)
+                    .addComponent(hostLBL)
+                    .addComponent(portLBL)
+                    .addComponent(userLBL)))
+            .addGroup(ajustesPNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ajustes", jPanel3);
+        TabedPanel.addTab("Ajustes", ajustesPNL);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -276,63 +177,86 @@ public class AdministradorPanelPrincipal extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(TabedPanel)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(TabedPanel)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userClienteTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userClienteTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userClienteTXTActionPerformed
+    private void applyBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyBTNActionPerformed
+        ArrayList<String> query = new ArrayList<>();
+        for (int i = 0; i < row.name.size(); i++) {
+            query.add(row.name.get(i) + " " + (row.serial.get(i) ? "serial" : row.type.get(i)) + (row.notNull.get(i) ? "NOT NULL" : ""));
+        }
+        ManagerBD.CreateNewTable(tableName.getText(), query);
+        addTableManager(tableName.getText());
+    }//GEN-LAST:event_applyBTNActionPerformed
 
-    private void passClienteTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passClienteTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passClienteTXTActionPerformed
+    private void newRowBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRowBTNActionPerformed
+        RowValues.init(numRow);
+        addTable.add(new RowPanel(numRow));
+        addTable.add(newRowBTN);
+        addTable.add(applyBTN);
+        addTable.updateUI();
+        addTable.repaint();
+        numRow++;
+    }//GEN-LAST:event_newRowBTNActionPerformed
 
-    private void usuarioEmplTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEmplTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioEmplTXTActionPerformed
+    private void connectDataBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectDataBaseActionPerformed
+        String name = JOptionPane.showInputDialog("Base de datos");
+        String host = JOptionPane.showInputDialog("Host");
+        String port = JOptionPane.showInputDialog("Port");
+        String user = JOptionPane.showInputDialog("Usuer");
+        String pass = JOptionPane.showInputDialog("Password");
+        if (ManagerBD.connect(host, port, name, user, pass)) {
+            JOptionPane.showMessageDialog(null, "¡Conectado!");
+        } else {
+            JOptionPane.showMessageDialog(null, "¡Algo a salido mal!");
+        }
+        status();
+        
+        
+    }//GEN-LAST:event_connectDataBaseActionPerformed
 
-    private void passEmplTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passEmplTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passEmplTXTActionPerformed
+    private void deleteTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTableActionPerformed
+        String name = JOptionPane.showInputDialog("Table Name");
+        ManagerBD.DeleteTable(name);
+    }//GEN-LAST:event_deleteTableActionPerformed
 
+    private void deleteDataBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDataBaseActionPerformed
+        String name = JOptionPane.showInputDialog("Base de datos");
+        ManagerBD.DeleteDataBase(name);
+    }//GEN-LAST:event_deleteDataBaseActionPerformed
+
+    private void createDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDBActionPerformed
+        String name = JOptionPane.showInputDialog("Nombre la nueva base de datos");
+        ManagerBD.CreateNewDataBase(name);
+        ManagerBD.connect("localhost", "5432", name, "rebgy", "Giovanny1096539141");
+        status();
+    }//GEN-LAST:event_createDBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField buscarClienteTXT;
-    private javax.swing.JTextField buscarEmplTXT;
-    private javax.swing.JButton editarClienteBTN;
-    private javax.swing.JButton editarEmplBTN;
-    private javax.swing.JButton eliminarClienteBTN;
-    private javax.swing.JButton eliminarEmplBTN;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton nuevoClienteBTN;
-    private javax.swing.JButton nuevoEmplBTN;
-    private javax.swing.JTextField passClienteTXT;
-    private javax.swing.JTextField passEmplTXT;
-    private javax.swing.JTable tableClientes;
-    private javax.swing.JTable tableEmpl;
-    private javax.swing.JTextField userClienteTXT;
-    private javax.swing.JTextField usuarioEmplTXT;
+    private javax.swing.JTabbedPane TabedPanel;
+    private javax.swing.JPanel addTable;
+    private javax.swing.JPanel ajustesPNL;
+    private javax.swing.JButton applyBTN;
+    private javax.swing.JButton connectDataBase;
+    private javax.swing.JButton createDB;
+    private javax.swing.JLabel databaseLBL;
+    private javax.swing.JButton deleteDataBase;
+    private javax.swing.JButton deleteTable;
+    private javax.swing.JLabel hostLBL;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton newRowBTN;
+    private javax.swing.JLabel portLBL;
+    private javax.swing.JTextField tableName;
+    private javax.swing.JLabel userLBL;
     // End of variables declaration//GEN-END:variables
 }

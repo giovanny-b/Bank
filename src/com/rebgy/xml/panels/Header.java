@@ -1,12 +1,17 @@
 package com.rebgy.xml.panels;
 
 import com.rebgy.xml.clases.ManagerBD;
+import com.rebgy.xml.interfaces.Login;
 import java.awt.Color;
+import javax.swing.JFrame;
 
 public class Header extends javax.swing.JPanel {
 
-    public Header() {
+    JFrame parent;
+    
+    public Header(JFrame parent) {
         initComponents();
+        this.parent = parent;
         titleLBL.setForeground(ColorUser());
         userLBL.setText(ManagerBD.usuario);
         typeLBL.setText(TypeUser());
@@ -55,6 +60,12 @@ public class Header extends javax.swing.JPanel {
         userLBL.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         userLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         userLBL.setText("user");
+        userLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        userLBL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userLBLMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -79,6 +90,11 @@ public class Header extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void userLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLBLMouseClicked
+        parent.dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_userLBLMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
